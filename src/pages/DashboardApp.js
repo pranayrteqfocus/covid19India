@@ -50,6 +50,7 @@ export default function DashboardApp() {
           setcovidData(covidData.data);
         })
       )
+
       .catch((error) => console.log(error));
   }, []);
   return (
