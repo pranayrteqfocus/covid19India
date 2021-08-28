@@ -34,17 +34,10 @@ export default function DashboardApp() {
       'x-rapidapi-key': '09aac4d697msh67831e80a87bf46p1755b7jsn7e9f5f44b4d4'
     }
   };
-  const graphData = {
-    method: 'GET',
-    url: 'https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/covid-ovid-data/sixmonth/USA',
-    headers: {
-      'x-rapidapi-host': 'vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com',
-      'x-rapidapi-key': '09aac4d697msh67831e80a87bf46p1755b7jsn7e9f5f44b4d4'
-    }
-  };
+
   useEffect(() => {
     axios
-      .all([axios.request(options), axios.request(graphData)])
+      .all([axios.request(options)])
       .then(
         axios.spread((covidData) => {
           setcovidData(covidData.data);
@@ -69,7 +62,7 @@ export default function DashboardApp() {
             <AppNewUsers recoveredCases={covidData[0]?.TotalRecovered} />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <AppItemOrders recoveredCases={covidData[0]?.TotalRecovered} />
+            <AppItemOrders totalDeath={covidData[0]?.TotalDeaths} />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <AppBugReports totalCases={covidData[0]?.TotalCases} />
